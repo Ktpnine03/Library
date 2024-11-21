@@ -66,3 +66,36 @@ int main() {
         Book("To Kill a Mockingbird", "Harper Lee", "15368", true, "2022-06-20"),
         Book("Pride and Prejudice", "Jane Austen", "22003", true, "2022-09-05"),
         Book("Moby Dick", "Herman Melville", "27809", true, "2022-12-25") };
+ cout << "Welcome to the Community Library!\n";
+
+    string inputISBN;
+    while (true) {
+        cout << "\nLibrary Books:\n";
+        for (const auto& book : library) {
+            book.displayBookDetails();
+        }
+
+        cout << "\nEnter the ISBN of the book you want to borrow (or 0 to exit): ";
+        cin >> inputISBN;
+
+        if (inputISBN == "0") {
+            cout << "Exiting the system. Thank you for using the library!" << endl;
+            break;
+        }
+
+        bool found = false;
+        for (auto& book : library) {
+            if (book.getISBN() == inputISBN) {
+                found = true;
+                book.borrowBook();
+                break;
+            }
+        }
+
+        if (!found) {
+            cout << "No book found with ISBN " << inputISBN << ". Please try again." << endl;
+        }
+    }
+
+    return 0;
+}
