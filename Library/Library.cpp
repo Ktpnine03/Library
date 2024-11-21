@@ -32,3 +32,21 @@ public:
             << ", ISBN: " << isbn
             << ", Availability: " << (available ? "Available" : "Borrowed") << endl;
     }
+ // Borrow book
+    bool borrowBook() {
+        if (available) {
+            available = false;
+            cout << "You successfully borrowed \"" << title << "\"." << endl;
+            return true;
+        }
+        else {
+            cout << "Sorry, \"" << title << "\" is currently unavailable." << endl;
+            return false;
+        }
+    }
+
+    // Return book
+    void returnBook() {
+        available = true;
+        cout << "\"" << title << "\" has been returned and is now available." << endl;
+    }
